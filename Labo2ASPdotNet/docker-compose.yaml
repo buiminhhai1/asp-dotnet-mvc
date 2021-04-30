@@ -1,0 +1,11 @@
+﻿version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: backend_service_postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=CompanyDB
+    ports:
+      - 5432:5432

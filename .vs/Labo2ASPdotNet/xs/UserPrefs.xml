@@ -1,51 +1,29 @@
 ﻿<Properties StartupConfiguration="{BD6CA4FB-CC92-4331-BF5D-CD7371207CF0}|Default">
   <MonoDevelop.Ide.ItemProperties.Labo2ASPdotNet PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Labo2ASPdotNet/wwwroot/css/site.css">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Labo2ASPdotNet/Models/Entities/Account.cs">
     <Files>
-      <File FileName="Labo2ASPdotNet/Controllers/SampleController.cs" Line="18" Column="10" />
-      <File FileName="Labo2ASPdotNet/Views/Home/Index.cshtml" Line="6" Column="26" />
-      <File FileName="Labo2ASPdotNet/Program.cs" Line="16" Column="1" />
-      <File FileName="Labo2ASPdotNet/Startup.cs" Line="59" Column="36" />
-      <File FileName="Labo2ASPdotNet/Areas/Admin/Controllers/LoginController.cs" Line="14" Column="23" />
-      <File FileName="Labo2ASPdotNet/Areas/Admin/Views/Login/Index.cshtml" Line="5" Column="28" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Controllers/ChartsController.cs" Line="17" Column="27" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Controllers/DetailController.cs" Line="12" Column="32" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Controllers/FormsController.cs" Line="16" Column="10" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Controllers/TableController.cs" Line="18" Column="10" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Controllers/UIElementsController.cs" Line="19" Column="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Home/DashBoardContent.cshtml" Line="6" Column="17" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Home/Privacy.cshtml" Line="1" Column="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Sample/Blank.cshtml" Line="4" Column="27" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Sample/Login.cshtml" Line="1" Column="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Charts/Flot.cshtml" Line="5" Column="27" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Charts/Index.cshtml" Line="6" Column="27" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Charts/MorrisJSChart.cshtml" Line="5" Column="27" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Forms/Index.cshtml" Line="4" Column="27" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Shared/_Layout.cshtml" Line="71" Column="8" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Shared/Error.cshtml" Line="1" Column="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Shared/NavigationBar.cshtml" Line="1" Column="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Shared/_ValidationScriptsPartial.cshtml" Line="1" Column="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/Table/Index.cshtml" Line="21" Column="10" />
-      <File FileName="Labo2ASPdotNet/Areas/Main/Views/UIElements/Buttons.cshtml" Line="15" Column="46" />
-      <File FileName="Labo2ASPdotNet/wwwroot/css/site.css" Line="1" Column="1" />
-      <File FileName="Labo2ASPdotNet/Controllers/HomeController.cs" Line="12" Column="16" NotebookId="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Admin/Controllers/HomeController.cs" Line="21" Column="1" NotebookId="1" />
-      <File FileName="Labo2ASPdotNet/Areas/Admin/Views/Index.cshtml" Line="5" Column="31" NotebookId="1" />
+      <File FileName="Labo2ASPdotNet/docker-compose.yaml" Line="9" Column="30" />
+      <File FileName="Labo2ASPdotNet/Database/DataContext.cs" Line="17" Column="1" />
+      <File FileName="Labo2ASPdotNet/appsettings.json" Line="13" Column="2" />
+      <File FileName="Labo2ASPdotNet/Startup.cs" Line="34" Column="10" />
+      <File FileName="Labo2ASPdotNet/Program.cs" Line="16" Column="21" />
+      <File FileName="Labo2ASPdotNet/appsettings.Development.json" Line="6" Column="24" />
+      <File FileName="Labo2ASPdotNet/Migrations/20210430034058_InitialCreate.cs" Line="1" Column="1" />
+      <File FileName="Labo2ASPdotNet/Migrations/DataContextModelSnapshot.cs" Line="1" Column="1" />
+      <File FileName="Labo2ASPdotNet/README.md" Line="6" Column="1" />
+      <File FileName="Labo2ASPdotNet/Migrations/20210430035026_InitialCreate.cs" Line="1" Column="1" />
+      <File FileName="Labo2ASPdotNet/Models/Entities/Account.cs" Line="13" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Labo2ASPdotNet" expanded="True">
             <Node name="Labo2ASPdotNet" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Main" expanded="True">
-                  <Node name="Views" selected="True" />
+              <Node name="Migrations" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Entities" expanded="True">
+                  <Node name="Account.cs" selected="True" />
                 </Node>
-              </Node>
-              <Node name="wwwroot" expanded="True">
-                <Node name="Assets" expanded="True" />
-                <Node name="css" expanded="True" />
-                <Node name="js" expanded="True" />
               </Node>
             </Node>
           </Node>
