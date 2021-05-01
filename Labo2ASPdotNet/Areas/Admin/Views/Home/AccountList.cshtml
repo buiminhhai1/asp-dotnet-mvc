@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Labo2ASPdotNet.Models.Entities.Account>
+
+@{
+    ViewBag.Title = "AccountList";
+}
+<h2>ListAccout</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Username)</th>
+    
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+    
+        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+    
+        <th>@Html.DisplayNameFor(model => model.LastName)</th>
+    
+        <th>@Html.DisplayNameFor(model => model.Password)</th>
+        <th></th>
+    </tr>
+    @foreach (Labo2ASPdotNet.Models.Entities.Account account in Model)
+    {
+    <tr>
+        <td>@account.Username</td>
+        <td>@account.Email</td>
+        <td>@account.FirstName</td>
+        <td>@account.LastName</td>
+        <td>@account.Password</td>
+        <td style-"display: flex">
+            @Html.ActionLink("Edit", "Edit")
+            @Html.ActionLink("Detail", "Detail")
+            @Html.ActionLink("Delete Exist", "Delete")
+        </td>
+    </tr>
+    }
+</table>

@@ -24,6 +24,7 @@
     <Folder Include="wwwroot\Assets\Main\js\" />
     <Folder Include="Models\Entities\" />
     <Folder Include="Database\" />
+    <Folder Include="Areas\Main\Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Assets\data\flot-data.js" />

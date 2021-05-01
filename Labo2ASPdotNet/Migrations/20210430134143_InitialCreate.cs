@@ -8,7 +8,7 @@ namespace Labo2ASPdotNet.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accouts",
+                name: "Accounts",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -22,14 +22,14 @@ namespace Labo2ASPdotNet.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accouts", x => x.Id);
+                    table.PrimaryKey("PK_Accounts", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accouts");
+                name: "Accounts");
         }
     }
 }

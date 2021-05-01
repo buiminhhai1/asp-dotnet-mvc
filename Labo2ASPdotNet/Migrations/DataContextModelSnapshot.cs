@@ -45,7 +45,7 @@ namespace Labo2ASPdotNet.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accouts");
+                    b.ToTable("Accounts");
                 });
 #pragma warning restore 612, 618
         }

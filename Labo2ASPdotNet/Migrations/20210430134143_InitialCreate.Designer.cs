@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Labo2ASPdotNet.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210430035026_InitialCreate")]
+    [Migration("20210430134143_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,7 +47,7 @@ namespace Labo2ASPdotNet.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accouts");
+                    b.ToTable("Accounts");
                 });
 #pragma warning restore 612, 618
         }
