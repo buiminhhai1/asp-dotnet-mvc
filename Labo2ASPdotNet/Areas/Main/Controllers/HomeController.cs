@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Labo2ASPdotNet.Models;
-using Labo2ASPdotNet.Database;
+using Labo2ASPdotNet.Services;
 
 namespace Labo2ASPdotNet.Controllers
 {
     [Area("Main")]
     public class HomeController : Controller
     {
-        private DataContext _context = null;
+        private readonly IUserService userService;
 
-        public HomeController(DataContext context)
+        public HomeController(IUserService service)
         {
-            _context = context;
+            userService = service;
         }
 
         public IActionResult Index()
@@ -29,24 +24,26 @@ namespace Labo2ASPdotNet.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LoginModel model)
         {
-            var result = _context.Accounts.FirstOrDefault(a => a.Username == model.Username);
-            if (result == null)
+            var result = userService.VerifyUser(model);
+            if (ModelState.IsValid != true || result != true)
             {
                 ModelState.AddModelError("", "Invalid Login Information");
                 return View(model);
             }
 
-            if (result != null && ModelState.IsValid && result.Password == model.Password)
+            if (result == true)
             {
                 return RedirectToAction("Index", "Dashboard", new { Area = "Main" });
             }
-            else
-            {
-                ModelState.AddModelError("", "Invalid Login Information");
-            }
+
             return View(model);
+            
         }
 
+        public IActionResult Welcome()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

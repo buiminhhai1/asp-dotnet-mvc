@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Labo2ASPdotNet.Database;
-using Labo2ASPdotNet.Models;
+﻿using Labo2ASPdotNet.Models;
 using Labo2ASPdotNet.Models.Entities;
+using Labo2ASPdotNet.Services;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,10 +10,10 @@ namespace Labo2ASPdotNet.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private DataContext _context = null;
-        public HomeController(DataContext context)
+        private readonly IUserService userService;
+        public HomeController(IUserService service)
         {
-            _context = context;
+            userService = service;
         }
 
         // GET: /
@@ -30,28 +26,57 @@ namespace Labo2ASPdotNet.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Index(LoginModel model)
         {
-            var result = _context.Accounts.FirstOrDefault(a => a.Username == model.Username);
-            if (result == null)
+            var result = userService.VerifyUser(model, true);
+            if (ModelState.IsValid != true || result != true)
             {
                 ModelState.AddModelError("", "Invalid Login Information");
                 return View(model);
             }
 
-            if (result != null && ModelState.IsValid && result.Password == model.Password)
+            if (result == true)
             {
-                return RedirectToAction("AccountList", "Home", new { Area = "Admin" });
+                return RedirectToAction("Index", "AccountList", new { Area = "Admin" });
             }
-            else
+
+            return View(model);
+        }
+
+        [Route("/Admin/AccountList")]
+        public IActionResult AccountList()
+        {
+            var data = userService.GetAll();
+            return View(data);
+        }
+
+        [Route("/Admin/Register")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("/Admin/Register")]
+        public IActionResult Register(RegisterModel model)
+        {
+            model.Role = Role.Admin;
+            var result = userService.CreateOne(model);
+            if (ModelState.IsValid != true || result != true)
             {
-                ModelState.AddModelError("", "Invalid Login Information");
+                ModelState.AddModelError("", "Invalid Register Information");
+                return View(model);
+            }
+            if (result == true)
+            {
+                return RedirectToAction("Welcome", "Home", new { Area = "Admin" });
             }
             return View(model);
         }
 
-        public ActionResult AccountList()
+        [Route("/Admin/Home/Welcome")]
+        public IActionResult Welcome()
         {
-            var data = _context.Accounts.ToList();
-            return View(data);
+            return View();
         }
     }
 }

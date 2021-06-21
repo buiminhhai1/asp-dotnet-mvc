@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Labo2ASPdotNet.Models.Entities.Account>
+﻿@model IEnumerable<Labo2ASPdotNet.Models.Entities.User>
 
 @{
     ViewBag.Title = "AccountList";
@@ -20,7 +20,7 @@
         <th>@Html.DisplayNameFor(model => model.Password)</th>
         <th></th>
     </tr>
-    @foreach (Labo2ASPdotNet.Models.Entities.Account account in Model)
+    @foreach (Labo2ASPdotNet.Models.Entities.User account in Model)
     {
     <tr>
         <td>@account.Username</td>
