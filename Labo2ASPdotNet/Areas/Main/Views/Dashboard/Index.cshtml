@@ -1,43 +1,60 @@
-﻿@model IEnumerable<Labo2ASPdotNet.Models.Entities.Product>
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewData["Title"] = "Dashboard Responsive";
+﻿@{
+    ViewData["Title"] = "All Products";
 }
-<!DOCTYPE html>
-<html lang="en">
+<partial name="~/Areas/Main/Views/Shared/NavigationBar.cshtml" />
 
-<head>
-    <meta charset="UTF-8">
-    <title>Responsive</title>
-    <link rel="stylesheet" href="~/Assets/Main/Dashboard/css/style.css">
-</head>
+<script type="text/javascript" src="~/Handlers/Main/ProductHandler.js"></script>
+<div id="page-wrapper">
+    <div class="alert alert-success" id="order-alert" role="alert">Order successfully</div>
+    <div class="row" style="display: flex; margin: 30px 20px 30px 20px; justify-content: flex-end">
+        <div style="display: flex; align-items:center;">
+            <input style="height: 37px; width: 180px; font-size: 14px" type="text" class="form-control" placeholder="Search by Product Name" id="inputSearchProductName">
+            <button type="submit" class="btn btn-primary" onclick="handleSearchProductByName()">Submit</button>
+        </div>
+        <button type="submit" class="btn btn-default" onclick="resetSearch()">Reset</button>
+    </div>
+    <div id="new-products-spinner" class="loader">Loading...</div>
+    <div class="alert alert-danger" id="admin-top-product-issue" role="alert">Please login to order product</div>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="row" id="data-top-product">
 
-<body>
-    <h1><span class="blue">&lt;</span>Table<span class="blue">&gt;</span> <span class="yellow">Responsive</span></h1>
-    <h2>Created with love by <a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a></h2>
+    </div>
+    <nav aria-label="pagination-section" id="product-pagination-wrapper">
+        <ul class="pagination" id="products-pagination"></ul>
+    </nav>
 
-    <table class="container">
-        <thead>
-            <tr>
-                <th><h2>@Html.DisplayNameFor(model => model.Name)</h2></th>
-                <th><h2>@Html.DisplayNameFor(model => model.Price)</h2></th>
-                <th><h2>@Html.DisplayNameFor(model => model.Quantity)</h2></th>
-                <th><h2>Total</h2></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Labo2ASPdotNet.Models.Entities.Product product in Model)
-            {
-                <tr>
-                    <td>@product.Name</td>
-                    <td>@product.Price</td>
-                    <td>@product.Quantity</td>
-                    <td>@product.Price * @product.Quantity</td>
-                </tr>    
-            }
-        </tbody>
-    </table>
-</body>
-</html>
+    <!-- Buy productd modal -->
+    <div class="modal fade" id="buy-products-modal" tabindex="-1" role="dialog" aria-labelledby="update-products-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateProductModalTitle">Buy product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -22px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nameProductBuy">Name</label>
+                        <input type="text" class="form-control" id="nameProductBuy" placeholder="Name of product" readonly disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceProductBuy">Price</label>
+                        <input type="number" class="form-control" id="priceProductBuy" value="0" readonly disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityProductBuy">Quantity</label>
+                        <input type="number" class="form-control" id="quantityProductBuy" value="1">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="updateButtonModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="handleBuyProduct()">
+                        <span id="buy-spinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span>Buy</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

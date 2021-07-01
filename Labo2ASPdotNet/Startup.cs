@@ -1,7 +1,10 @@
+using System;
 using Labo2ASPdotNet.Database;
 using Labo2ASPdotNet.Services;
+using Labo2ASPdotNet.Wrappers.JwtHelpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,12 +25,26 @@ namespace Labo2ASPdotNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(p => p.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IOrderItemService, OrderItemService>();
-            services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUriService>(o =>
+            {
+                var accessor = o.GetRequiredService<IHttpContextAccessor>();
+                var request = accessor.HttpContext.Request;
+                var uri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent());
+                return new UriService(uri);
+            });
+            
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +65,9 @@ namespace Labo2ASPdotNet
 
             app.UseRouting();
 
+            app.UseMiddleware<JwtMiddleware>();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

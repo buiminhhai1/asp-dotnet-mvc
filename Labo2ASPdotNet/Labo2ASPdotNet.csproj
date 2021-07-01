@@ -28,15 +28,39 @@
     <Folder Include="wwwroot\Assets\Main\Dashboard\css\" />
     <Folder Include="Services\" />
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\Handlers\" />
+    <Folder Include="wwwroot\Handlers\Admin\" />
+    <Folder Include="Areas\Api\" />
+    <Folder Include="Areas\Api\Controllers\" />
+    <Folder Include="Wrappers\" />
+    <Folder Include="Wrappers\Filters\" />
+    <Folder Include="Services\Category\" />
+    <Folder Include="Services\Product\" />
+    <Folder Include="Services\Order\" />
+    <Folder Include="Services\OrderItem\" />
+    <Folder Include="Services\User\" />
+    <Folder Include="Services\Uri\" />
+    <Folder Include="Wrappers\Helpers\" />
+    <Folder Include="Wrappers\JwtHelpers\" />
+    <Folder Include="wwwroot\Handlers\Main\" />
+    <Folder Include="Areas\Main\Views\Order\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.5.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.16" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Areas\Admin\Views\Home\Dashboard..cshtml" />
+    <Content Remove="wwwroot\Handlers\Admin\DashboardHandler.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\Handlers\Admin\DashboardHandler.js" />
   </ItemGroup>
 </Project>

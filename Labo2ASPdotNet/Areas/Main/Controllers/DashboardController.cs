@@ -22,8 +22,9 @@ namespace Labo2ASPdotNet.Areas.Main.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var products = productService.GetAll();
-            return View(products);
+            //var products = productService.GetAll();
+            //return View(products);
+            return View();
         }
     }
 }

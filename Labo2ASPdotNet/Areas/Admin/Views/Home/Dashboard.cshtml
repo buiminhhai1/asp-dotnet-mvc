@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "User Management";
+}
+<partial name="~/Areas/Admin/Views/Shared/AdminNavigationBar.cshtml" />
+
+<script type="text/javascript" src="~/Handlers/Admin/DashboardHandler.js"></script>
+<div id="page-wrapper">
+    <h2 style="margin-bottom: 30px;">Users Management</h2>
+    <div id="admin-dashboard-spinner" class="loader">Loading...</div>
+
+    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-accountList">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Created At</th>
+                <th>isActive</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="datatable-tbody">          
+        </tbody>
+    </table>
+</div>

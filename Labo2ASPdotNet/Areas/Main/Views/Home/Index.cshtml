@@ -11,6 +11,7 @@
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="~/Assets/Main/css/style.css">
+    <link href="~/Assets/Admin/css/cssSpinner.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -19,35 +20,32 @@
             <li class="tab"><a href="/Register">Sign Up</a></li>
             <li class="tab active"><a href="/">Log In</a></li>
         </ul>
-
+        <div id="alert" style="text-align: center; color: red;">Invalid value to login, try again</div>
         <div>
             <div id="login">
                 <h1>Welcome Back!</h1>
-
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, null, new { @class = "alert alert-danger", @style = "color: white; background: red"})
-                    <div class="field-wrap">
-                        <label>
-                            Username<span class="req">*</span>
-                        </label>
-                        @Html.TextBoxFor(m => m.Username)
-                    </div>
-                    <div class="field-wrap">
-                        <label>
-                            Password<span class="req">*</span>
-                        </label>
-                        @Html.TextBoxFor(m => m.Password, new { type = "password" })
-                    </div>
-                    <p class="forgot"><a href="#">Forgot Password?</a></p>
-                    <button class="button button-block" type="submit">Log In</button>
+                <div class="field-wrap">
+                    <label>
+                        Username<span class="req">*</span>
+                    </label>
+                    <input placeholder="Username" id="user-input-username" />
+                </div>
+                <div class="field-wrap">
+                    <label>
+                        Password<span class="req">*</span>
+                    </label>
+                    <input type="password" id="user-input-password" placeholder="Password" />
+                </div>
+                <p class="forgot"><a href="#">Forgot Password?</a></p>
+                <button class="button button-block" type="submit" onclick="handleLogin()">Log In</button>
                 }
             </div>
+            <div id="user-login-spinner" class="loader">Loading...</div>
         </div><!-- tab-content -->
     </div> <!-- /form -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src="~/Assets/Main/js/index.js"></script>
+    <script src="~/Handlers/Main/LoginHandler.js"></script>
 
 </body>
 

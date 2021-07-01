@@ -1,6 +1,8 @@
-﻿using Labo2ASPdotNet.Models;
+﻿using System.Threading.Tasks;
+using Labo2ASPdotNet.Models;
 using Labo2ASPdotNet.Models.Entities;
 using Labo2ASPdotNet.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -35,18 +37,12 @@ namespace Labo2ASPdotNet.Areas.Admin.Controllers
 
             if (result == true)
             {
-                return RedirectToAction("Index", "AccountList", new { Area = "Admin" });
+                return RedirectToAction("Index", "Dashboard", new { Area = "Admin" });
             }
 
             return View(model);
         }
 
-        [Route("/Admin/AccountList")]
-        public IActionResult AccountList()
-        {
-            var data = userService.GetAll();
-            return View(data);
-        }
 
         [Route("/Admin/Register")]
         public IActionResult Register()
@@ -77,6 +73,57 @@ namespace Labo2ASPdotNet.Areas.Admin.Controllers
         public IActionResult Welcome()
         {
             return View();
+        }
+
+        [Route("/Admin/About")]
+        public IActionResult About()
+        {
+            return View();
+        }
+
+
+        [Route("/Admin/Dashboard")]
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+        [Route("/Admin/AllProduct")]
+        public IActionResult AllProduct()
+        {
+            return View();
+        }
+        [Route("/Admin/TopProduct")]
+        public IActionResult TopProduct()
+        {
+            return View();
+        }
+
+        [Route("/Admin/Category")]
+        public IActionResult Category()
+        {
+            return View();
+        }
+
+        [Route("/Admin/Order")]
+        public IActionResult Order()
+        {
+            return View();
+        }
+
+        // API Areas
+        [Route("/Admin/AccountList")]
+        public JsonResult AccountList()
+        {
+            var data = userService.GetAll();
+            return Json(data);
+        }
+
+        [Route("/Admin/AccountList/User/{id}")]
+        [HttpPut]
+        public void BlockUser(int id, bool value)
+        {
+            userService.ChangeActiveStatus(id, value);
         }
     }
 }

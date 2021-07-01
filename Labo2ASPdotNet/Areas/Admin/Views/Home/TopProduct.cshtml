@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Products Best Sellers";
+}
+<partial name="~/Areas/Admin/Views/Shared/AdminNavigationBar.cshtml" />
+
+<script type="text/javascript" src="~/Handlers/Admin/TopProductHandler.js"></script>
+<div id="page-wrapper">
+    <h2 style="margin-bottom: 30px;">New Products</h2>
+    <div id="new-products-spinner" class="loader">Loading...</div>
+    <div class="alert alert-danger" id="admin-top-product-issue" role="alert">Please login to order product</div>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="row" id="data-top-product">
+
+    </div>
+
+    <!-- Buy productd modal -->
+    <div class="modal fade" id="buy-products-modal" tabindex="-1" role="dialog" aria-labelledby="update-products-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateProductModalTitle">Buy product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -22px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nameProductBuy">Name</label>
+                        <input type="text" class="form-control" id="nameProductBuy" placeholder="Name of product" readonly disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceProductBuy">Price</label>
+                        <input type="number" class="form-control" id="priceProductBuy" value="0" readonly disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityProductBuy">Quantity</label>
+                        <input type="number" class="form-control" id="quantityProductBuy" value="1">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="updateButtonModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="handleBuyProduct()">
+                        <span id="buy-spinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span>Buy</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,165 @@
+﻿@{
+    ViewData["Title"] = "Products Management";
+}
+<partial name="~/Areas/Admin/Views/Shared/AdminNavigationBar.cshtml" />
+
+<script type="text/javascript" src="~/Handlers/Admin/ProductHandler.js"></script>
+<div id="page-wrapper">
+    <h2 style="margin-bottom: 30px;">Products Management</h2>
+
+    
+    <div class="row" style="display: flex; margin: 30px 20px 30px 20px; justify-content: flex-end">
+        <button class="btn btn-success" style="margin-right: 30px" data-toggle="modal" data-target="#create-products-modal">Add New Product</button>
+        <div style="display: flex; align-items:center;">
+            <input style="height: 37px; width: 180px; font-size: 14px" type="text" class="form-control" placeholder="Search by Product Name" id="inputSearchProductName">
+            <button type="submit" class="btn btn-primary" onclick="handleSearchProductByName()">Submit</button>
+        </div>
+        <button type="submit" class="btn btn-default" onclick="resetSearch()">Reset</button>
+    </div>
+    <!-- Create product Modal -->
+    <div class="modal fade" id="create-products-modal" tabindex="-1" role="dialog" aria-labelledby="create-products-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create new product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -22px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nameProductCreate">Name</label>
+                        <input type="text" class="form-control" id="nameProductCreate" placeholder="Name of product">
+                    </div>
+                    <div class="form-group">
+                        <label for="priceProductCreate">Price</label>
+                        <input type="number" class="form-control" id="priceProductCreate" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityProductCreate">Quantity</label>
+                        <input type="number" class="form-control" id="quantityProductCreate" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityProductCreate">Category</label>
+                        <select class="form-control" id="categoryProductCreate">
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageProductCreate">Image Url</label>
+                        <input type="url" class="form-control" id="imageProductCreate">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionProductCreate">Description</label>
+                        <textarea class="form-control" id="descriptionProductCreate" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="createButtonModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="handleCreateProduct()">
+                        <span id="create-spinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span>Create</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="admin-products-spinner" class="loader">Loading...</div>
+
+    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-productList">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>CreatedAt</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="datatable-product-tbody">
+        </tbody>
+    </table>
+
+    <!-- Pagination-->
+    <nav aria-label="pagination-section" id="product-pagination-wrapper">
+        <ul class="pagination" id="products-pagination"></ul>
+    </nav>
+
+    <!-- Update productd modal -->
+    <div class="modal fade" id="update-products-modal" tabindex="-1" role="dialog" aria-labelledby="update-products-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateProductModalTitle">Update product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -22px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nameProductUpdate">Name</label>
+                        <input type="text" class="form-control" id="nameProductUpdate" placeholder="Name of product">
+                    </div>
+                    <div class="form-group">
+                        <label for="priceProductUpdate">Price</label>
+                        <input type="number" class="form-control" id="priceProductUpdate" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityProductUpdate">Quantity</label>
+                        <input type="number" class="form-control" id="quantityProductUpdate" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryProductUpdate">Category</label>
+                        <select class="form-control" id="categoryProductUpdate">
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageProductUpdate">Image Url</label>
+                        <input type="url" class="form-control" id="imageProductUpdate">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionProductUpdate">Description</label>
+                        <textarea class="form-control" id="descriptionProductUpdate" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="updateButtonModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="handleUpdateProduct()">
+                        <span id="update-spinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span>Save</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete productd modal -->
+    <div class="modal fade" id="delete-products-modal" tabindex="-1" role="dialog" aria-labelledby="delete-products-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateProductModalTitle">Delete product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -22px;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure to delete this product???
+                </div>
+                <div class="modal-footer">
+                    <button id="deleteButtonModal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" onclick="handleDeleteProduct()">
+                        <span id="delete-spinner" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span>Delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
